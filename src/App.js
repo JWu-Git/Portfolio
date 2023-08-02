@@ -1,14 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert } from 'react-bootstrap';
-
+import NavBar from './components/NavBar';
 function App() {
   return (
     <>
-      {
-        <Alert key="primary" variant="primary">
-          This is a primary alert—check it out!
-        </Alert>
-      }
+      <NavBar />
     </>
   );
 }
