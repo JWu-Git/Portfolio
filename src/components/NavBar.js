@@ -17,6 +17,9 @@ function NavBar() {
             </Nav.Link>
             <NavDropdown title="Sorting Algorithms" id="basic-nav-dropdown">
               <NavDropdown.Item>
+                <Link to="/bubble">Bubble Sort</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
                 <Link to="/insertion">Insertion Sort</Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
