@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <Navbar bg="primary" data-bs-theme="dark">
+    <Navbar className="mb-4" bg="primary" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href="/">Algorithm Odyssey by Jun Wu</Navbar.Brand>
+        <Navbar.Brand href="/">Algorithms Odyssey by Jun Wu</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
