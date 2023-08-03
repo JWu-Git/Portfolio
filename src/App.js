@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Bubble from './pages/Sorting/Bubble';
 import Insertion from './pages/Sorting/Insertion';
 import Merge from './pages/Sorting/Merge';
+import Selection from './pages/Sorting/Selection';
 import Quick from './pages/Sorting/Quick';
 import AStar from './pages/Pathfinding/AStar';
 import Bfs from './pages/Pathfinding/Bfs';
@@ -24,6 +25,9 @@ export default function App() {
           </Route>
           <Route path="/insertion">
             <Insertion />
+          </Route>
+          <Route path="/selection">
+            <Selection />
           </Route>
           <Route path="/merge">
             <Merge />
