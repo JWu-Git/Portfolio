@@ -1,8 +1,8 @@
 import React from 'react';
-export default function DisplayNumbers() {
+export default function DisplayNumbers({ data }) {
   return (
     <>
-      <h2 className="center">Numbers</h2>
+      <h2 className="center">{data.join(', ')}</h2>
     </>
   );
 }

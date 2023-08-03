@@ -30,19 +30,17 @@ export const options = {
   },
 };
 
-const labels = ['', '', '', '', '', '', ''];
+export default function BarGraph({ values }) {
+  const data = {
+    labels: values.map((el) => ''),
+    datasets: [
+      {
+        label: '',
+        data: values,
+        backgroundColor: 'rgba(0, 123, 255, 1)',
+      },
+    ],
+  };
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: '',
-      data: [1, 2, 3, 4, 5, 6, 7],
-      backgroundColor: 'rgba(0, 123, 255, 1)',
-    },
-  ],
-};
-
-export default function BarGraph() {
   return <Bar options={options} data={data} />;
 }
