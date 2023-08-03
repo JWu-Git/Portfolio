@@ -19,18 +19,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {},
-    title: {
-      display: true,
-      text: 'Bubble Sort',
-    },
-  },
-};
-
-export default function BarGraph({ values }) {
+export default function BarGraph({ values, title }) {
   const data = {
     labels: values.map((el) => ''),
     datasets: [
@@ -42,5 +31,15 @@ export default function BarGraph({ values }) {
     ],
   };
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {},
+      title: {
+        display: true,
+        text: title,
+      },
+    },
+  };
   return <Bar options={options} data={data} />;
 }

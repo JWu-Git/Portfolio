@@ -7,14 +7,14 @@ import { useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 export default function Bubble() {
-  const data = useSelector((data) => data.values);
+  const data = useSelector((data) => data.bubble.values);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const delayedBubbleSort = async () => {
-      for (let i = data.length - 1; i > 0; i--) {
-        for (let j = 0; j <= i - 1; j++) {
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data.length - i - 1; j++) {
           await new Promise((resolve) => setTimeout(resolve, 100));
           dispatch(bubbleSort(j));
         }
@@ -27,7 +27,6 @@ export default function Bubble() {
   const handleSetData = (values) => {
     const numbersArray = values.split(',').map((num) => parseInt(num));
     dispatch(setBubbleData(numbersArray));
-    dispatch(bubbleSort());
   };
 
   return (
@@ -38,7 +37,7 @@ export default function Bubble() {
           <DisplayNumbers data={data} />
         </Col>
         <Col>
-          <BarGraph values={data} />
+          <BarGraph values={data} title="Bubble Sort" />
         </Col>
       </Row>
     </>
