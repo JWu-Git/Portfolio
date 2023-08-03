@@ -4,7 +4,8 @@ import DisplayNumbers from '../../components/DisplayNumbers';
 import { bubbleSort, setBubbleData } from '../../store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 export default function Bubble() {
   const data = useSelector((data) => data.values);
 
@@ -32,8 +33,14 @@ export default function Bubble() {
   return (
     <>
       <Input value={data} setData={handleSetData} />
-      <DisplayNumbers data={data} />
-      <BarGraph values={data} />
+      <Row>
+        <Col xs={5}>
+          <DisplayNumbers data={data} />
+        </Col>
+        <Col>
+          <BarGraph values={data} />
+        </Col>
+      </Row>
     </>
   );
 }
