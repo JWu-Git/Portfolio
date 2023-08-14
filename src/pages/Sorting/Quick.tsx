@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function Quick() {
+interface Props {}
+
+export default function Quick({}: Props) {
   return <div>Quick</div>;
 }

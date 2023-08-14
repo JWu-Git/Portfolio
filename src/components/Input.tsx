@@ -6,25 +6,31 @@ import { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
-export default function Input({ setData, title }) {
-  const [value, setValue] = useState('');
+interface Props {
+  setData: (data: number[]) => void;
+  title: string;
+}
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
+export default function Input({ setData, title }: Props) {
+  const [input, setInput] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setData(value);
-    setValue('');
+    const numberArray = input.split(',').map((num) => parseInt(num));
+    setData(numberArray);
+    setInput('');
   };
 
-  const handlePick = (num) => {
-    const arr = [];
+  const handlePick = (num: number) => {
+    const arr: number[] = [];
     for (let i = 0; i < num; i++) {
-      arr.push(Math.random() * 1000);
+      arr.push(Math.floor(Math.random() * 1000));
     }
-    setData(arr.toString());
+    setData(arr);
   };
 
   return (
@@ -70,7 +76,7 @@ export default function Input({ setData, title }) {
           <Form.Control
             type="text"
             placeholder="Enter numbers seperated by commas. e.g. 1, 2, 3"
-            value={value}
+            value={input}
             onChange={handleChange}
           />
         </Form.Group>

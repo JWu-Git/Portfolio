@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function Home() {
+interface Props {}
+
+export default function Home({}: Props) {
   return <div>Home</div>;
 }

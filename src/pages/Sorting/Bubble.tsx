@@ -2,16 +2,16 @@ import React from 'react';
 import BarGraph from '../../components/BarGraph';
 import Input from '../../components/Input';
 import DisplayNumbers from '../../components/DisplayNumbers';
-import { bubbleSort, setBubbleData } from '../../store/index';
-import { useDispatch, useSelector } from 'react-redux';
+import { bubbleSort, setBubbleData } from '../../store/slices/bubble';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useEffect, useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
 export default function Bubble() {
-  const data = useSelector((data) => data.bubble.values);
+  const data = useAppSelector((data) => data.bubble.values);
   const [changed, setChanged] = useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const delayedBubbleSort = async () => {
@@ -26,15 +26,14 @@ export default function Bubble() {
     delayedBubbleSort();
   }, [changed]);
 
-  const handleSetData = (values) => {
-    const numbersArray = values.split(',').map((num) => parseInt(num));
-    dispatch(setBubbleData(numbersArray));
+  const handleSetData = (values: number[]) => {
+    dispatch(setBubbleData(values));
     setChanged((c) => c + 1);
   };
   const title = 'Bubble Sort';
   return (
     <>
-      <Input value={data} setData={handleSetData} title={title} />
+      <Input setData={handleSetData} title={title} />
       <Row>
         <Col xs={5}>
           <DisplayNumbers data={data} />

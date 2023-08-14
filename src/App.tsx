@@ -9,8 +9,6 @@ import Merge from './pages/Sorting/Merge';
 import Selection from './pages/Sorting/Selection';
 import Quick from './pages/Sorting/Quick';
 import AStar from './pages/Pathfinding/AStar';
-import Bfs from './pages/Pathfinding/Bfs';
-import Dfs from './pages/Pathfinding/Dfs';
 import PageContainer from './components/PageContainer';
 import './style.css';
 
@@ -37,12 +35,6 @@ export default function App() {
           </Route>
           <Route path="/astar">
             <AStar />
-          </Route>
-          <Route path="/bfs">
-            <Bfs />
-          </Route>
-          <Route path="/dfs">
-            <Dfs />
           </Route>
           <Route path="/">
             <Home />

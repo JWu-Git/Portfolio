@@ -19,7 +19,11 @@ ChartJS.register(
   Legend
 );
 
-export default function BarGraph({ values, title }) {
+interface Props {
+  values: number[];
+  title: string;
+}
+export default function BarGraph({ values, title }: Props) {
   const data = {
     labels: values.map((el) => ''),
     datasets: [

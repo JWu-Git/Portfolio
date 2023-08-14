@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function AStar() {
+interface Props {}
+
+export default function AStar({}: Props) {
   return <div>AStar</div>;
 }

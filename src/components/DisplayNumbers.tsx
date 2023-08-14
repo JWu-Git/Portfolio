@@ -1,5 +1,9 @@
 import React from 'react';
-export default function DisplayNumbers({ data }) {
+
+interface Props {
+  data: number[];
+}
+export default function DisplayNumbers({ data }: Props) {
   return (
     <>
       <p className="center">{data.join(', ')}</p>
