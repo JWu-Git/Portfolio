@@ -1,3 +1,4 @@
+import React from 'react';
 import BarGraph from '../../components/BarGraph';
 import Input from '../../components/Input';
 import DisplayNumbers from '../../components/DisplayNumbers';
@@ -25,16 +26,17 @@ export default function Selection() {
     const numbersArray = values.split(',').map((num) => parseInt(num));
     dispatch(setSelectionData(numbersArray));
   };
+  const title = 'Selection Sort';
 
   return (
     <>
-      <Input value={data} setData={handleSetData} />
+      <Input value={data} setData={handleSetData} title={title} />
       <Row>
         <Col xs={5}>
           <DisplayNumbers data={data} />
         </Col>
         <Col>
-          <BarGraph values={data} title="Selection Sort" />
+          <BarGraph values={data} title={title} />
         </Col>
       </Row>
     </>
