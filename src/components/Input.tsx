@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
-export default function Input({ setData }) {
+export default function Input({ setData, title }) {
   const [value, setValue] = useState('');
 
   const handleChange = (e) => {
@@ -29,6 +29,7 @@ export default function Input({ setData }) {
 
   return (
     <>
+      <h1 className="center mb-4">{title}</h1>
       <Row>
         <Col></Col>
         <Col>
