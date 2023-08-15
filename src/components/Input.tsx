@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,7 +13,8 @@ interface Props {
 
 export default function Input({ setData, title }: Props) {
   const [input, setInput] = useState('');
-
+  const [disabled, setDisabled] = useState(false);
+  const [error, setError] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
@@ -21,11 +22,19 @@ export default function Input({ setData, title }: Props) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const numberArray = input.split(',').map((num) => parseInt(num));
-    setData(numberArray);
-    setInput('');
+    if (!numberArray.includes(NaN)) {
+      setDisabled(true);
+      setData(numberArray);
+      setInput('');
+      setError('');
+    } else {
+      setError('Your input is not numbers separated by commas.');
+    }
   };
 
   const handlePick = (num: number) => {
+    setError('');
+    setDisabled(true);
     const arr: number[] = [];
     for (let i = 0; i < num; i++) {
       arr.push(Math.floor(Math.random() * 1000));
@@ -40,32 +49,35 @@ export default function Input({ setData, title }: Props) {
         <Col></Col>
         <Col>
           <Button
+            disabled={disabled}
             onClick={() => {
-              handlePick(100);
+              handlePick(10);
             }}
             variant="success"
           >
-            Pick 100 Random Numbers
+            Pick 10 Random Numbers
           </Button>
         </Col>
         <Col>
           <Button
+            disabled={disabled}
             onClick={() => {
-              handlePick(300);
+              handlePick(50);
             }}
             variant="primary"
           >
-            Pick 300 Random Numbers
+            Pick 50 Random Numbers
           </Button>
         </Col>
         <Col>
           <Button
+            disabled={disabled}
             onClick={() => {
-              handlePick(1000);
+              handlePick(100);
             }}
             variant="warning"
           >
-            Pick 1000 Random Numbers
+            Pick 100 Random Numbers
           </Button>
         </Col>
         <Col></Col>
@@ -80,9 +92,11 @@ export default function Input({ setData, title }: Props) {
             onChange={handleChange}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+
+        <Button disabled={disabled} variant="primary" type="submit">
           Start Sorting!
         </Button>
+        <p className="red mt-2">{error}</p>
       </Form>
     </>
   );

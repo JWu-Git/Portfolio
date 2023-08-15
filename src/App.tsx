@@ -19,7 +19,7 @@ export default function App() {
       <PageContainer>
         <Switch>
           <Route path="/bubble">
-            <Bubble />
+            <Bubble title="Bubble Sort" />
           </Route>
           <Route path="/insertion">
             <Insertion />

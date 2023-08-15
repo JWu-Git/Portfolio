@@ -2,44 +2,38 @@ import React from 'react';
 import BarGraph from '../../components/BarGraph';
 import Input from '../../components/Input';
 import DisplayNumbers from '../../components/DisplayNumbers';
-import { bubbleSort, setBubbleData } from '../../store/slices/bubble';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { useEffect, useState } from 'react';
+import { bubbleSortThunk } from '../../store/thunks/bubblesort';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
-export default function Bubble() {
-  const data = useAppSelector((data) => data.bubble.values);
-  const [changed, setChanged] = useState(0);
+interface Props {
+  title: string;
+}
+export default function Bubble({ title }: Props) {
+  const { values, first_index, second_index } = useAppSelector(
+    (data) => data.bubble
+  );
+
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const delayedBubbleSort = async () => {
-      for (let i = 0; i < data.length; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 200));
-        for (let j = 0; j < data.length - i - 1; j++) {
-          dispatch(bubbleSort(j));
-        }
-      }
-    };
-
-    delayedBubbleSort();
-  }, [changed]);
-
   const handleSetData = (values: number[]) => {
-    dispatch(setBubbleData(values));
-    setChanged((c) => c + 1);
+    dispatch(bubbleSortThunk(values));
   };
-  const title = 'Bubble Sort';
   return (
     <>
       <Input setData={handleSetData} title={title} />
       <Row>
         <Col xs={5}>
-          <DisplayNumbers data={data} />
+          <DisplayNumbers data={values} />
         </Col>
         <Col>
-          <BarGraph values={data} title={title} />
+          <BarGraph
+            values={values}
+            title={title}
+            first_index={first_index}
+            second_index={second_index}
+          />
         </Col>
       </Row>
     </>
