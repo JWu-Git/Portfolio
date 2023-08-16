@@ -9,11 +9,11 @@ import { Col } from 'react-bootstrap';
 interface Props {
   setData: (data: number[]) => void;
   title: string;
+  is_sorting: boolean;
 }
 
-export default function Input({ setData, title }: Props) {
+export default function Input({ setData, title, is_sorting }: Props) {
   const [input, setInput] = useState('');
-  const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -23,7 +23,6 @@ export default function Input({ setData, title }: Props) {
     e.preventDefault();
     const numberArray = input.split(',').map((num) => parseInt(num));
     if (!numberArray.includes(NaN)) {
-      setDisabled(true);
       setData(numberArray);
       setInput('');
       setError('');
@@ -34,7 +33,6 @@ export default function Input({ setData, title }: Props) {
 
   const handlePick = (num: number) => {
     setError('');
-    setDisabled(true);
     const arr: number[] = [];
     for (let i = 0; i < num; i++) {
       arr.push(Math.floor(Math.random() * 1000));
@@ -49,18 +47,18 @@ export default function Input({ setData, title }: Props) {
         <Col></Col>
         <Col>
           <Button
-            disabled={disabled}
+            disabled={is_sorting}
             onClick={() => {
-              handlePick(10);
+              handlePick(25);
             }}
             variant="success"
           >
-            Pick 10 Random Numbers
+            Pick 25 Random Numbers
           </Button>
         </Col>
         <Col>
           <Button
-            disabled={disabled}
+            disabled={is_sorting}
             onClick={() => {
               handlePick(50);
             }}
@@ -71,7 +69,7 @@ export default function Input({ setData, title }: Props) {
         </Col>
         <Col>
           <Button
-            disabled={disabled}
+            disabled={is_sorting}
             onClick={() => {
               handlePick(100);
             }}
@@ -87,13 +85,13 @@ export default function Input({ setData, title }: Props) {
           <Form.Label>Your numbers:</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter numbers seperated by commas. e.g. 1, 2, 3"
+            placeholder="Enter numbers seperated by commas. e.g. 3, 2, 1"
             value={input}
             onChange={handleChange}
           />
         </Form.Group>
 
-        <Button disabled={disabled} variant="primary" type="submit">
+        <Button disabled={is_sorting} variant="primary" type="submit">
           Start Sorting!
         </Button>
         <p className="red mt-2">{error}</p>

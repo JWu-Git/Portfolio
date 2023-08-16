@@ -22,8 +22,8 @@ ChartJS.register(
 interface Props {
   values: number[];
   title: string;
-  first_index: number;
-  second_index: number;
+  first_compare_index: number;
+  second_compare_index: number;
 }
 
 type color = 'rgba(0, 123, 255, 1)' | 'rgba(50, 50, 50, 1)';
@@ -31,15 +31,15 @@ type backgroundColor = color[];
 export default function BarGraph({
   values,
   title,
-  first_index,
-  second_index,
+  first_compare_index,
+  second_compare_index,
 }: Props) {
-  console.log(first_index, second_index);
-  const backgroundColor: backgroundColor = values.map((el, index) => {
-    if (index === first_index || index === second_index)
-      return 'rgba(50, 50, 50, 1)';
-    else return 'rgba(0, 123, 255, 1)';
-  });
+  const backgroundColor: backgroundColor = new Array(values.length).fill(
+    'rgba(0, 123, 255, 1)'
+  );
+  backgroundColor[first_compare_index] = 'rgba(50, 50, 50, 1)';
+  backgroundColor[second_compare_index] = 'rgba(50, 50, 50, 1)';
+
   const data = {
     labels: values.map((el) => ''),
     datasets: [

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import bubbleReducer from './slices/bubble';
+import bubbleReducer from './slices/sort';
 
 const store = configureStore({
   reducer: {
